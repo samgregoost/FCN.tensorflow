@@ -16,7 +16,7 @@ def read_dataset(data_dir):
     pickle_filename = "MITSceneParsing.pickle"
     pickle_filepath = os.path.join(data_dir, pickle_filename)
     if not os.path.exists(pickle_filepath):
-        utils.maybe_download_and_extract(data_dir, DATA_URL, is_zipfile=True)
+      #  utils.maybe_download_and_extract(data_dir, DATA_URL, is_zipfile=True)
         SceneParsing_folder = os.path.splitext(DATA_URL.split("/")[-1])[0]
         result = create_image_lists(os.path.join(data_dir, SceneParsing_folder))
         print ("Pickling ...")
@@ -52,7 +52,7 @@ def create_image_lists(image_dir):
         else:
             for f in file_list:
                 filename = os.path.splitext(f.split("/")[-1])[0]
-                annotation_file = os.path.join(image_dir, "annotations", directory, filename + '.png')
+                annotation_file = os.path.join(image_dir, "annotations", directory, filename + '.ppm')
                 if os.path.exists(annotation_file):
                     record = {'image': f, 'annotation': annotation_file, 'filename': filename}
                     image_list[directory].append(record)
